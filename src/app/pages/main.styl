@@ -1,0 +1,126 @@
+.main
+  header
+    padding 10px
+    text-align center
+    background $dark
+    color $light
+    overflow overlay
+    @media $sm
+      position fixed
+      top 0
+      padding 0
+      width 100%
+      height 44px
+      overflow hidden
+      z-index 1
+    h1
+      font-weight lighter
+      font-size 200%
+      @media $sm
+        display inline-block
+        padding-left 5px
+        line-height 44px
+        width 49%
+        text-align left
+    nav
+      @media $sm
+        display inline-block
+        padding-right 5px
+        line-height 34px
+        padding 5px 0
+        width 49%
+        text-align right
+        vertical-align top
+      .search
+        padding-left 35px
+        color $dark
+        background-color $light
+        background-image url($sprite)
+        background-position -95px
+      .toggle
+        background url($sprite) no-repeat
+        width 42px
+        height 16px
+        vertical-align middle
+        margin-left 5px
+        &.default
+          background-position 0 50%
+        &.clear
+          background-position -52px 50%
+
+  .photos
+    padding 20px 10px
+    text-align center
+    @media $sm
+      margin-top 40px
+    .photo
+      background white
+      display inline-block
+      width 250px
+      height 350px
+      border 1px solid #DCDCDC
+      margin 2px 5px
+      overflow hidden
+      text-align left
+      opacity 0
+      transition all .25s
+      .image
+        width 100%
+        height 200px
+        background-position center
+        background-size contain
+        background-origin content-box
+        padding 10px
+      .details
+        padding 10px
+        margin-top 10px
+        font-size 80%
+        height 100%
+        .title
+          @extend .ellipsis
+        .author
+          @extend .ellipsis
+        .description
+          max-height 34px
+          overflow hidden
+          font-size 90%
+        .tags
+          .tag, .tag-more
+            background $light
+            padding 2px 5px
+            margin 0 4px 4px 0
+            float left
+          .tag:before
+            content '#'
+            color #888
+            margin-right 1px
+
+  .photos.clear
+    .photo
+      width 250px
+      height 250px
+      position relative
+      border 0
+      margin 0 3px
+      .image
+        width 100%
+        height 100%
+        padding 0
+        background-size cover
+      .details
+        position absolute
+        bottom -100%
+        opacity 0
+        width 100%
+        height auto
+        padding-top 30px
+        color $light
+        background linear-gradient(to top, rgba(0, 0 , 0, .8) 20%,rgba(0, 0, 0, 0) 100%)
+        transition opacity .25s, bottom .25s
+        a
+          color white
+        .tag, .tag-more
+          background rgba(0, 0, 0, .5)
+      &:hover .details
+        opacity 1
+        bottom 0

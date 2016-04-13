@@ -1,0 +1,17 @@
+.main
+  header
+    h1 Flickr Photo Stream
+    nav
+      input.search(type="search" ng-model="search" placeholder="Search...")
+      button.toggle(ng-click="main.clearMode = !main.clearMode" ng-class="main.clearMode ? 'clear' : 'default'")
+  section.photos(infinite-scroll="main.loadMore()" infinite-scroll-disabled="main.loadDisabled" ng-class="{clear: main.clearMode}")
+    article.photo(ng-repeat="photo in main.photos | filter:search track by photo.link")
+      .image(lazy-bg="{{::photo.media.m}}")
+      .details
+        a.title(ng-href="{{::photo.link}}" ng-bind-html="::photo.title") 
+        p.author by 
+          a(ng-href="https://www.flickr.com/photos/{{::photo.author_id}}/" ng-bind="::photo.author")
+        p.description(ng-bind-html="::photo.description")
+        .tags
+          .tag(ng-repeat="tag in ::photo.tags | limitTo: 3" ng-bind="::tag")
+          .tag-more(ng-if="::photo.tags.length > 3") +{{::photo.tags.length - 3}}
